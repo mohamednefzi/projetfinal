@@ -1,0 +1,24 @@
+package manager;
+
+import entities.User;
+//les attribut Private static String Query
+
+
+public class UserManager {
+
+	
+	public static User getUser(String login, String pwd) {
+		return null;
+	}
+
+	
+	public boolean verifyUser(String login, String pwd) {
+		return false;
+	}
+
+	
+	public User getAllInformationById(int id) {
+		return null;
+	}
+
+}

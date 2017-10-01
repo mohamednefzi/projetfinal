@@ -1,0 +1,26 @@
+package manager;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+import entities.Sales;
+
+public class SalesManager {
+	
+	// les attributs static private String query
+	
+	public static ArrayList<Sales> getAll(){
+		return null;
+	}
+	
+	
+	// on passe un tableau qui prend une valeur ou plus car on veut permettre a l'admin d'afficher un ou plusieur etablissements
+	// on peut ajouter les orderBy Date ou produit cette methode affiche toutes les ventes de chaque jour
+	public static ArrayList<Sales> getByIdEtablishement(int[] idEtablishement, Date dateFirst,Date dateEnd){
+		return null;
+	}
+	
+	public static ArrayList<Sales> getStatByEtablishement(int[] idEtablishement, Date dateFirst,Date dateEnd){
+		return null;
+	}
+}

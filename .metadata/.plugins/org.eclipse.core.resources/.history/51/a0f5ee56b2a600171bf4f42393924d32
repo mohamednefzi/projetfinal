@@ -1,0 +1,15 @@
+package manager;
+
+import java.util.ArrayList;
+
+import entities.Category;
+
+// les attribut Private static String Query
+
+public class CategoryManager {
+	
+public static ArrayList<Category> getAll(){
+	return null;
+}
+
+}

@@ -1,0 +1,13 @@
+package manager;
+
+import java.util.ArrayList;
+
+import entities.Etablishment;
+
+public class EtablishmentManager {
+	
+	public static ArrayList<Etablishment> getAll(){
+		return null;
+	}
+
+}

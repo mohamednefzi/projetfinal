@@ -1,0 +1,7 @@
+package manager;
+
+public class SalesManager {
+	
+	// les attributs static private String query
+
+}
