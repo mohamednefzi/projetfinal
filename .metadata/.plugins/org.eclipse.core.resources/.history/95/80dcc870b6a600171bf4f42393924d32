@@ -1,0 +1,17 @@
+package manager;
+
+import java.util.ArrayList;
+
+import entities.Order;
+
+public class OrderManager {
+	
+	
+	// les attribut Private static String Query
+	
+	
+	public static ArrayList<Order> getAll(){
+		return null;
+	}
+
+}

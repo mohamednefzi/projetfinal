@@ -1,0 +1,10 @@
+package manager;
+
+import entities.User;
+
+public interface IUserManager {
+	public User getUser(String login, String pwd);
+	public boolean verifyUser(String login, String pwd);
+	public User getAllInformationById(int id);
+
+}
