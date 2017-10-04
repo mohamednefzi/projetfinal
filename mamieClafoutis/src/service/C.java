@@ -1,7 +1,10 @@
 package service;
 
+import java.util.ArrayList;
+
 public class C {
 	
-	// les constantes utiliser dans setattribute et get attributes
-
+	public static final String ProductList = "MyProductsList";
+	public static final String Product = "MyProduct";
+	
 }
