@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import entities.Ingredient;
 
-public class IngerdientManger {
+public class IngerdientManager {
 	
 	
 	

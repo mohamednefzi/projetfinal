@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import entities.Ingredient;
 import entities.Product;
 
-public class ProductManger {
+public class ProductManager {
 	// les attribut Private static String Query
 	
 	
