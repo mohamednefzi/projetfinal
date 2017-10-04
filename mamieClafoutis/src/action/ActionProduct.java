@@ -8,7 +8,7 @@ import entities.Product;
 import manager.ProductManger;
 import service.C;
 
-public class ActionProduit {
+public class ActionProduct {
 	
 	public static void displayAll(HttpServletRequest request) {
 		ArrayList<Product> products = null;
@@ -17,4 +17,16 @@ public class ActionProduit {
 			request.setAttribute(C.ProductList,products);
 			}	
 		}
+	
+	public static void displayProductByID(int id,HttpServletRequest request){
+		Product product = null;
+		product = ProductManger.getById(id);
+		if(product != null){
+			request.setAttribute(C.Product,product);
+			}
+	}
+
+	public static void displayProductByCategorieId(int id){
+		
+	}
 }
