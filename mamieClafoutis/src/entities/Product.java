@@ -8,7 +8,8 @@ public class Product implements Serializable {
 	private String description;
 	private String urlImage;
 	private float price;
-		
+	private int idCategroy;	
+	private String ref;
 	public Product(){
 	
 	}
@@ -51,6 +52,22 @@ public class Product implements Serializable {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	public int getIdCategroy() {
+		return idCategroy;
+	}
+
+	public void setIdCategroy(int idCategroy) {
+		this.idCategroy = idCategroy;
+	}
+
+	public String getRef() {
+		return ref;
+	}
+
+	public void setRef(String ref) {
+		this.ref = ref;
 	}
 	
 }
