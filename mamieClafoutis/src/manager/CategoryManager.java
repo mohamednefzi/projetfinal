@@ -8,32 +8,39 @@ import java.util.ArrayList;
 import entities.Category;
 import service.ConnexionBDD;
 
-public class CategoryManager {
+public class CategoryManager
+{
 	// les attribut Private static String Query
 	private static String queryAll = "select * from categorie";
 	private static String queryInsert = "insert into categorie ('denomination') values(?)";
 
-	public static ArrayList<Category> getAll() {
+	public static ArrayList<Category> getAll()
+	{
 		ArrayList<Category> categorie = null;
-		try {
+		try
+		{
 			PreparedStatement ps = ConnexionBDD.getConnection().prepareStatement(queryAll);
 			ResultSet result = ps.executeQuery();
-			if (result.isBeforeFirst()) {
+			if (result.isBeforeFirst())
+			{
 				categorie = new ArrayList<>();
-				while (result.next()) {
+				while (result.next())
+				{
 					Category c = new Category();
 					c.setId(result.getInt("id"));
 					c.setNom(result.getString("denomination"));
 					categorie.add(c);
 				}
 			}
-		} catch (SQLException e) {
+		}
+		
+		catch (SQLException e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			ConnexionBDD.closeConnection();
 		}
-
+		
+		finally { ConnexionBDD.closeConnection(); }
 		return categorie;
 	}
 
