@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import entities.Ingredient;
 import entities.Product;
 
-public class ProductManger {
+public class ProductManager {
 	// les attribut Private static String Query
 	
 	
@@ -32,7 +32,7 @@ public class ProductManger {
 	public static boolean Insert(Product item){
 		return false;
 	}
-// une methode qui utilise la meme query qui modifie tout les champs d'un produit meme s'il y a une seule colonne à modifier	
+// une methode qui utilise la meme query qui modifie tout les champs d'un produit meme s'il y a une seule colonne ï¿½ modifier	
 	public static boolean Update (Product item){
 		return false;
 	}
@@ -41,7 +41,7 @@ public class ProductManger {
 		return null;
 	}
 	
-	// dans le cas ou la recette est un textarea on retourne un String si l recette est composé de plusieurs lignes on retourne Al<Receipe> ou on ouvre un fichier editable 
+	// dans le cas ou la recette est un textarea on retourne un String si l recette est composï¿½ de plusieurs lignes on retourne Al<Receipe> ou on ouvre un fichier editable 
 	public static String getReceipeById(int idProduct){
 		return null;
 	}

@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import entities.Ingredient;
 
-public class IngerdientManger {
-	
-	
+public class IngredientManager {
 	
 	public static ArrayList<Ingredient>getAll(){
 		return null;
