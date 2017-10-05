@@ -26,7 +26,33 @@ public class ActionProduct {
 			}
 	}
 
-	public static void displayProductByCategorieId(int id){
-		
+	public static void displayProductsByCategorieId(int id,HttpServletRequest request){
+		ArrayList<Product> products = null;
+		products = ProductManager.getByCategoryId(id);
+		if(products != null){
+			request.setAttribute(C.ProductList,products);
+			}
 	}
+	
+	public static void displayProductByName(String name,HttpServletRequest request){
+		ArrayList<Product> products = null;
+		products = ProductManager.getByName(name);
+		if(products != null){
+			request.setAttribute(C.ProductList,products);
+			}
+	}
+	
+	public static void addProduct(Product aProduct){
+		if(aProduct != null){
+			ProductManager.Insert(aProduct);
+		}
+	}
+	
+	public static void removeProduct(Product aProduct){
+		if(aProduct != null){
+			/*ProductManager.delete(aProduct);*/
+		}
+	}
+	
+	
 }

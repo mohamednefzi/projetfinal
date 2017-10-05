@@ -2,7 +2,8 @@ package entities;
 
 public class Category {
 	private int id;
-	private String nom;
+	private String name;
+	
 	public int getId() {
 		return id;
 	}
@@ -10,10 +11,10 @@ public class Category {
 		this.id = id;
 	}
 	public String getNom() {
-		return nom;
+		return name;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNom(String name) {
+		this.name = name;
 	}
 
 }
