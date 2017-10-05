@@ -19,12 +19,11 @@ public class ProductManager {
 	private static String queryInsert = "insert into produit ('nom','categorie_id','ref','description','prix','urlImage') values(?,?,?,?,?,?)";
 	private static String queryUpdate = "update produit set nom=? ,categorie_id=?, description=?,prix=?, urlImage=? where id=?";
 	private static String queryIngredientById = "select I.id as id,I.denomination as nom,LI.qantite as qte,I.ref as ref,LI.unite as unite from produit as P inner join ligne_ingredient as LI on P.id=LI.produit_id inner join ingredient I on LI.ingredient_id=I.id where p.id=?";
-	private static String queryRecipeById="select * from recette where produit_id=?";
-	private static String queryUpdateIngredientByID="update ligne_ingredient set quantite=?,unite=? where produit_id=?";
-	private static String queryDeleteLineIngedientByID="delete from ligne_ingredient where product_id=? and ingredient_id=?";
-	private static String queryInsertListIngredientByID="insert into ligne_ingredient ('produit_id','ingredient_id','quantite','unite') values (?,?,?,?)";
-	
-	
+	private static String queryRecipeById = "select * from recette where produit_id=?";
+	private static String queryUpdateIngredientByID = "update ligne_ingredient set quantite=?,unite=? where produit_id=?";
+	private static String queryDeleteLineIngedientByID = "delete from ligne_ingredient where product_id=? and ingredient_id=?";
+	private static String queryInsertListIngredientByID = "insert into ligne_ingredient ('produit_id','ingredient_id','quantite','unite') values (?,?,?,?)";
+
 	// retourner tout les produit de la table produit
 	public static ArrayList<Product> getAll() {
 		ArrayList<Product> retour = null;
@@ -43,12 +42,15 @@ public class ProductManager {
 				p.setUrlImage(result.getString("urlImage"));
 				retour.add(p);
 			}
-			ConnexionBDD.closeConnection();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 
+		ConnexionBDD.closeConnection();
 		return retour;
 	}
 
@@ -71,12 +73,13 @@ public class ProductManager {
 				p.setUrlImage(result.getString("urlImage"));
 				retour.add(p);
 			}
-			ConnexionBDD.closeConnection();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
-
 		return retour;
 	}
 
@@ -99,10 +102,12 @@ public class ProductManager {
 				p.setUrlImage(result.getString("urlImage"));
 				retour.add(p);
 			}
-			ConnexionBDD.closeConnection();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 
 		return retour;
@@ -128,10 +133,12 @@ public class ProductManager {
 				p.setUrlImage(result.getString("urlImage"));
 
 			}
-			ConnexionBDD.closeConnection();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 
 		return retour;
@@ -150,10 +157,12 @@ public class ProductManager {
 				if (result.next()) {
 					retour = result.getString("nomCategorie");
 				}
-			ConnexionBDD.closeConnection();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 
 		return retour;
@@ -172,10 +181,11 @@ public class ProductManager {
 			ps.setString(6, item.getUrlImage());
 			retour = ps.execute();
 
-			ConnexionBDD.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 
 		return retour;
@@ -198,10 +208,11 @@ public class ProductManager {
 			if (nbrUpdate > 0)
 				retour = true;
 
-			ConnexionBDD.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 		return retour;
 	}
@@ -223,10 +234,12 @@ public class ProductManager {
 				I.setUnite(result.getString("unite"));
 				retour.add(I);
 			}
-			ConnexionBDD.closeConnection();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 		return retour;
 	}
@@ -235,79 +248,86 @@ public class ProductManager {
 	// recette est composé de plusieurs lignes on retourne Al<Receipe> ou on
 	// ouvre un fichier editable
 	public static String getRecipeById(int idProduct) {
-	String recette=null;
-	
+		String recette = null;
+
 		try {
-			PreparedStatement ps=ConnexionBDD.getConnection().prepareStatement(queryRecipeById);
+			PreparedStatement ps = ConnexionBDD.getConnection().prepareStatement(queryRecipeById);
 			ps.setInt(1, idProduct);
-			ResultSet result=ps.executeQuery();
-			if(result.isBeforeFirst())
-				if(result.next())
-					recette=result.getString("url_recette");
-			ConnexionBDD.closeConnection();
+			ResultSet result = ps.executeQuery();
+			if (result.isBeforeFirst())
+				if (result.next())
+					recette = result.getString("url_recette");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 		return recette;
 	}
 
 	// modifier les quantites des ingredients d'un produit par unite
 	public static boolean UpdateIngeredientById(int idProduct, Ingredient ingerdient) {
-		boolean retour=false;
+		boolean retour = false;
 		try {
-			PreparedStatement ps=ConnexionBDD.getConnection().prepareStatement(queryUpdateIngredientByID);
+			PreparedStatement ps = ConnexionBDD.getConnection().prepareStatement(queryUpdateIngredientByID);
 			ps.setFloat(1, ingerdient.getQte());
 			ps.setString(2, ingerdient.getUnite());
 			ps.setInt(3, idProduct);
-			int nbUpdate=ps.executeUpdate();
-			if(nbUpdate>0)
-				retour=true;
-			
+			int nbUpdate = ps.executeUpdate();
+			if (nbUpdate > 0)
+				retour = true;
+
 			ConnexionBDD.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 		return retour;
 	}
 
 	// supprimer un ingredient de la table ingredient des produits
 	public static boolean removeIngredientById(int idProduct, int idIngredient) {
-		boolean retour=false;
+		boolean retour = false;
 		try {
-			PreparedStatement ps=ConnexionBDD.getConnection().prepareStatement(queryDeleteLineIngedientByID);
+			PreparedStatement ps = ConnexionBDD.getConnection().prepareStatement(queryDeleteLineIngedientByID);
 			ps.setInt(1, idProduct);
 			ps.setInt(2, idIngredient);
-			retour=ps.execute();
-			
-			ConnexionBDD.closeConnection();
+			retour = ps.execute();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 		return retour;
 	}
 
 	// inserer un ingredient de la table ingredient des produits
 	public static boolean InsertIngredientById(int idProduct, ArrayList<Ingredient> ingeredients) {
-		boolean retour=false;
-		int nbInsert=0;
+		boolean retour = false;
+		int nbInsert = 0;
 		try {
-			for(Ingredient i:ingeredients){
-			PreparedStatement ps=ConnexionBDD.getConnection().prepareStatement(queryInsertListIngredientByID);
-			ps.setInt(1, idProduct);
-			ps.setInt(2, i.getId());
-			ps.setFloat(3, i.getQte());
-			ps.setString(4, i.getUnite());
-			if(ps.execute())
-				nbInsert++;
+			for (Ingredient i : ingeredients) {
+				PreparedStatement ps = ConnexionBDD.getConnection().prepareStatement(queryInsertListIngredientByID);
+				ps.setInt(1, idProduct);
+				ps.setInt(2, i.getId());
+				ps.setFloat(3, i.getQte());
+				ps.setString(4, i.getUnite());
+				if (ps.execute())
+					nbInsert++;
 			}
-			if(nbInsert==ingeredients.size())
-				retour=true;
+			if (nbInsert == ingeredients.size())
+				retour = true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnexionBDD.closeConnection();
 		}
 		return retour;
 	}
