@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`etablisement` (
   `name` VARCHAR(255) NOT NULL DEFAULT 'Mami Clafoutis',
   `adresse` VARCHAR(255) NOT NULL,
   `tel` VARCHAR(12) NOT NULL,
-  `type_id` INT UNSIGNED NOT NULL,
+  `type_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idetablisement_UNIQUE` (`id` ASC),
   UNIQUE INDEX `adresse_UNIQUE` (`adresse` ASC),

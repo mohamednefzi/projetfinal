@@ -1,8 +1,0 @@
-package manager;
-
-import entities.User;
-
-public interface IUserManager {
-	public User getUser(String login, String pwd);
-
-}

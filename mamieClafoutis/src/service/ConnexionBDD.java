@@ -7,12 +7,12 @@ import java.sql.SQLException;
 
 public class ConnexionBDD {
 
-	private static final String url = "jdbc:mysql://localhost:3306/mamie_clafoutie";
+	private static final String url = "jdbc:mysql://localhost:3306/my_db";
 	private static final String identifiant = "root";
 	private static final String pwd = "abc123...";
 	private static Connection connection = null;
 
-	public static void getConnection() {
+	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(url, identifiant, pwd);
@@ -20,6 +20,7 @@ public class ConnexionBDD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return connection;
 	}
 
 	public static void closeConnection() {
